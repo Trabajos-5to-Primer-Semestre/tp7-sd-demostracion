@@ -2,12 +2,10 @@ FROM python
 
 COPY ./main_process/requirements.txt ./requirements.txt
 
-RUN pip install --upgrade pip wheel setuptools && pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY main_process ./main_process
 
 WORKDIR ./main_process
 
-EXPOSE 6666/tcp
-
-CMD ["python" , "./main_process.py"]
+CMD ["python" , "-u", "./main_process.py"]
