@@ -19,6 +19,9 @@ services:
     networks:
       - python-demo
 
+    depends_on:
+      - main_process
+
 
 networks:
   python-demo:
