@@ -1,0 +1,28 @@
+version: '3'
+services:
+  main_process:
+    build:
+      context: .
+      dockerfile: Dockerfile-main
+
+    container_name: main_container
+
+    networks:
+      - python-demo
+
+  client_process:
+    build:
+      context: .
+      dockerfile: Dockerfile-client
+
+    container_name: client_container
+    networks:
+      - python-demo
+
+
+networks:
+  python-demo:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.2.0/24

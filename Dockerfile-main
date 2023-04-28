@@ -1,0 +1,7 @@
+FROM python
+
+COPY main_process ./main_process
+
+WORKDIR ./main_process
+
+CMD ["python" , "./main_process.py"]

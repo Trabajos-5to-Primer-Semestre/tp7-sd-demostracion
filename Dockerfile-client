@@ -1,0 +1,7 @@
+FROM python
+
+COPY client_process ./client_process
+
+WORKDIR ./client_process
+
+CMD ["python" , "./client_process.py"]
