@@ -7,6 +7,9 @@ services:
 
     container_name: main_container
 
+    depends_on:
+      - mongoDB
+
     networks:
       - python-demo
 
@@ -22,6 +25,20 @@ services:
     depends_on:
       - main_process
 
+  mongoDB:
+    container_name: mongoDB
+    image: mongo
+    volumes:
+      - 'mongo:/data/db'
+    ports:
+      - '27017:27017'
+
+    networks:
+      - python-demo
+
+
+volumes:
+  mongo:
 
 networks:
   python-demo:
