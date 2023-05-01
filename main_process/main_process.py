@@ -28,7 +28,20 @@ def client_logic(socket_connection):
         send_msg_utf(socket_connection, "I am a message from main")
         data = receive_utf_msg(socket_connection)
 
-        print(data)
+        print(f"Thread {thread_id}: Recibido: {data}")
+
+        while True:
+            calculo = receive_utf_msg(socket_connection)
+
+            if len(calculo) == 0:
+                break
+
+            print(f"Thread {thread_id}: Recibido: {calculo}")
+            calculo = str(numexpr.evaluate(calculo.replace('^', '**')))
+            print(f'Thread {thread_id}: Respondiendo:{calculo}')
+
+            send_msg_utf(socket_connection, calculo)
+
 
 
 

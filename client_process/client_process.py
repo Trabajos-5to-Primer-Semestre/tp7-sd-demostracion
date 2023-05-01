@@ -22,8 +22,19 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
 
     data = receive_utf_msg(s)
-    print(data)
+    print(f"Recibido: {data}")
 
     send_msg_utf(s, "I am a message from client")
 
+    with open("calculos.txt", 'r') as file:
+        lines = [line.rstrip() for line in file]
 
+        print(f"Calculos a realizar: {lines}")
+
+        for line in lines:
+            print(f"Enviado: {line}")
+            send_msg_utf(s, line)
+            response = receive_utf_msg(s)
+            print(f"Respuesta: {response}")
+
+        s.close()
